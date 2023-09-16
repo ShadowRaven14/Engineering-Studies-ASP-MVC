@@ -1,0 +1,42 @@
+﻿@model OnlineShop.Models.CategoryDetail
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item ">Categories</li>
+        <li class="breadcrumb-item active">Dodaj nową kategorię</li>
+
+    </ol>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Dodaj nową kategorię
+            <a href="../Admin/AddCategory" class="btn btn-info pull-right fa fa-plus">Dodaj</a>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("UpdateCategory", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(m => m.CategoryId);
+                @Html.HiddenFor(m => m.isDelete);
+                <div class="form-group">
+                    <label class="control-label">Nazwa kategorii</label>
+
+                    @Html.TextBoxFor(m => m.CatgoryName, new { @class = "form-control", placeholder = "Wprowadź nazwę kategorii", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.CatgoryName, "", new { @class = "text-danger" })
+                </div>
+                <a onclick="window.history.back();" class="btn btn-danger">Anuluj</a>
+                <input type="submit" class="btn btn-primary" value="Zapisz" />
+            }
+        </div>
+    </div>
+</div>
+
